@@ -219,7 +219,7 @@
       border: none;
       color: var(--headerColor);
       display: block;
-      width: 100%;
+      width: 96%;
       position: relative;
       transition: background-color 0.3s, color 0.3s;
     }
@@ -269,7 +269,7 @@
       font-family: 'Montserrat', sans-serif;
       font-size: clamp(0.875rem, 1.5vw, 1rem);
       line-height: 1.5em;
-      width: 100%;
+      width: 90%;
       height: 0;
       margin: 0;
       /* 16px - 24px */
@@ -351,11 +351,13 @@
 .cs-item-img {
   width: 100%;
   height: auto;
-  display: block; /* Ensures that the image does not have any inline extra space */
+  display: block;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
 }
 
 .cs-button-and-image-container {
   padding: 0;
-  margin: 0;
+  margin: 0px;
 }
 
