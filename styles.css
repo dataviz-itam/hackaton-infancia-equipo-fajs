@@ -281,6 +281,12 @@
       overflow: hidden;
       transition: opacity 0.3s, padding-bottom 0.3s;
     }
+    #faq-1720 .cs-item-p img {
+      width: 100%; 
+      height: auto; 
+      margin-top: 1rem;
+  }
+  
     .montserrat{
         font-family: "Montserrat", sans-serif;
         font-style: normal;
