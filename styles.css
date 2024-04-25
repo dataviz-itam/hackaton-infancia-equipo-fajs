@@ -348,3 +348,14 @@
     z-index: 1000; /* Ensures the image is above other elements */
 }
 
+.cs-item-img {
+  width: 100%;
+  height: auto;
+  display: block; /* Ensures that the image does not have any inline extra space */
+}
+
+.cs-button-and-image-container {
+  padding: 0;
+  margin: 0;
+}
+
