@@ -96,9 +96,9 @@
       color: var(--primary);
     }
     #faq-1720 .cs-picture {
-      width: 100%;
+      width: 110%;
       /* 328px - 450px */
-      height: clamp(20.5rem, 30vw, 28.125rem);
+      height: clamp(20.5rem, 30vw, 28.125rem); 
       /* 16px - 20px */
       margin: 0 0 clamp(1rem, 2.4vw, 1.25rem);
       order: 2;
