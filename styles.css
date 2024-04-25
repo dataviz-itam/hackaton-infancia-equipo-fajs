@@ -32,6 +32,17 @@
     #faq-1720 .cs-title {
       margin: 0;
     }
+    #faq-1720 h2 {
+      font-family: 'Montserrat', sans-serif; 
+      /* font-weight: 900; Example weight, adjust as needed */
+    }
+    #faq-1720 .cs-description {
+      font-family: 'Montserrat', sans-serif;  
+      font-size: 16px;  
+      color: #333;  
+      margin-top: 8px;  
+      max-width: 600px;  
+  }
     #faq-1720 .cs-flex-group {
       width: 100%;
       overflow: hidden;
