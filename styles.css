@@ -339,4 +339,12 @@
       }
   }
  
-                                  
+  #top-right-logo {
+    position: absolute; /* or 'fixed' to keep it in place on scroll */
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    width: 200px; /* Smaller width */
+    height: auto; /* Keep height auto to maintain aspect ratio */
+    z-index: 1000; /* Ensures the image is above other elements */
+}
+
