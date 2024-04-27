@@ -32,9 +32,9 @@
     }
     #faq-1720 h2 {
       font-family: 'Montserrat', sans-serif;
-      font-size: 2rem;
-      margin: 0 0 20px 0;
-      text-align: justify;
+      font-size: 2.8rem;
+      margin: 1 0 20px 0;
+      text-align: center;
     }
     #faq-1720 .cs-description {
       font-family: 'Montserrat', sans-serif;  
@@ -278,6 +278,7 @@
       width: 90%;
       height: 0;
       margin: 0;
+      text-align:justify;
       /* 16px - 24px */
       padding: 0 clamp(1rem, 2vw, 1.5rem);
       opacity: 0;
