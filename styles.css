@@ -8,6 +8,7 @@
       width: 100%;
       max-width: 80rem;
       margin: auto;
+      justify-content: center;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -21,6 +22,7 @@
       text-align: left;
       width: 100%;
       display: flex;
+      text-align: justify;
       flex-direction: column;
       /* centers content horizontally, set to flex-start to left align */
       align-items: flex-start;
@@ -29,13 +31,17 @@
       margin: 0;
     }
     #faq-1720 h2 {
-      font-family: 'Montserrat', sans-serif; 
-      /* font-weight: 900; Example weight, adjust as needed */
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2rem;
+      margin: 0 0 20px 0;
+      text-align: justify;
     }
     #faq-1720 .cs-description {
       font-family: 'Montserrat', sans-serif;  
-      font-size: 16px;  
-      color: #333;  
+      font-size: 1.2rem;
+      font-weight: 500;  
+      color: #333; 
+      margin: auto; 
       margin-top: 8px;  
       max-width: 800px;  
   }
