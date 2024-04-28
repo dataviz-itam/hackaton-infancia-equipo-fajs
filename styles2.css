@@ -1,0 +1,42 @@
+:root {
+    --title-height: 90px; 
+    --title-padding-top: 30px; 
+    --graph-height: 1000px; 
+    --slider-height: 100px
+}
+
+html,
+body {
+    color: #FFF;
+    margin: 0;
+    padding: 0;
+    height: auto;
+    min-height: 100vh;
+    width: 100vw;
+    background: #333;
+    font-family: 'Arial', sans-serif;
+}
+
+#chart-container {
+    width: 100vw;
+}
+
+#chart-title {
+    color: #FFF;
+    text-align: center;
+    font-size: 2em;
+    font-family: 'Arial', sans-serif;
+    width: 100vw;
+    height: var(--title-height);
+    padding-top: var(--title-padding-top);
+    box-sizing: border-box;
+}
+
+#graph {    
+    background: #ffffff;
+    width: 90vw;
+    height: var(--graph-height);
+    margin: 10px auto;
+    position: relative;
+}
+
