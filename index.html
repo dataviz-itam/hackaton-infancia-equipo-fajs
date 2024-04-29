@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script type="module" src="carga_datos.js"></script>
+    <script type="module" src="main2.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -83,8 +87,7 @@
                                 </span>
                             </button>
                             <p class="cs-item-p">
-                                Añadir mapa interactivo
-                                <img src="mapa_provicional.jpeg" alt="Esto se borrará despues" class="cs-item-img">
+                                <div id="mapid" style="width: 300px; height: 200px;"></div>
                             </p>                          
                         </li>                           
                         <li class="cs-faq-item">

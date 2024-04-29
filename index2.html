@@ -6,18 +6,16 @@
     <link rel="stylesheet" href="styles2.css">
 </head>
 <body>
-    <!-- Contenedor del gráfico ocupando el 90% de la altura del viewport -->
     <div id="chart-container">
         <div id="chart-title">
             Niños, niñas y adolescentes desaparecidos del 2020-2023
         </div>
-        <!-- Contenedor para la gráfica -->
         <div id="graph">
-            <!-- Canvas para el gráfico -->
-            <canvas id="desap_mun"></canvas>
+            <div id="mapid" style="width: 600px; height: 400px;"></div>
         </div>
     </div>
-    <!-- Contenedor del slider ocupando el 10% de la altura del viewport y centrado -->
+   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+   <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
    <script src="https://d3js.org/d3.v7.min.js"></script>
    <script type="module" src="carga_datos.js"></script>
    <script type="module" src="main2.js"></script>
