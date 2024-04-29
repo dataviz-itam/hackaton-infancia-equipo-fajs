@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script type="module" src="carga_datos.js"></script>
-    <script type="module" src="main2.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -13,7 +9,7 @@
     <title>Visualizacion Hackaton</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        body {
+        body {  
             font-family: "Montserrat", sans-serif;
             background-color: #ece2e288; /* Example: light gray background */
         }
@@ -90,10 +86,11 @@
                                     Casos por municipio
                                 </span>
                             </button>
-                            <p class="cs-item-p">
-                                <div id="mapid" style="width: 300px; height: 200px;"></div>
-                            </p>                          
-                        </li>                           
+                            <!-- Usa un div en lugar de un párrafo para contener el mapa -->
+                            <div class="cs-item-p">
+                                <div id="mapid" style="width: 100%; height: 400px;"></div>
+                            </div>                          
+                        </li>                          
                         <li class="cs-faq-item">
                             <button class="cs-button">
                                 <span class="cs-button-text">
@@ -132,9 +129,9 @@
                                     Mapa de desapariciones
                                 </span>
                             </button>
-                            <p class="cs-item-p">
-                                Añdir mapa despues
-                            </p>
+                            <div class="cs-item-p" style="width: 100%; padding: 0;">
+                                <div id="mapid2" style="width: 100%; height: 400px;"></div>
+                            </div>
                         </li>
                         <li class="cs-faq-item">
                             <button class="cs-button">
@@ -348,5 +345,10 @@
     
         new FAQFilter();
     </script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script type="module" src="carga_datos.js"></script>
+    <script type="module" src="main2.js"></script>
 </body>
 </html>
