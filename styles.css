@@ -1,0 +1,372 @@
+/* Mobile - 360px */
+@media only screen and (min-width: 0rem) {
+    #faq-1720 {
+      padding: var(--sectionPadding);
+      position: relative;
+    }
+    #faq-1720 .cs-container {
+      width: 100%;
+      max-width: 80rem;
+      margin: auto;
+      justify-content: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* 48px - 64px */
+      gap: clamp(3rem, 6vw, 4rem);
+      position: relative;
+      z-index: 1;
+    }
+    #faq-1720 .cs-content {
+      /* set text align to left if content needs to be left aligned */
+      text-align: left;
+      width: 100%;
+      height: 320px;
+      display: flex;
+      text-align: justify;
+      flex-direction: column;
+      background-color: #ebebe8;
+      /* centers content horizontally, set to flex-start to left align */
+      align-items: flex-start;
+    }
+    #faq-1720 .cs-title {
+      margin: 0;
+    }
+    #faq-1720 h2 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 2.8rem;
+      margin: 1 0 20px 0;
+      text-align: center;
+    }
+    #faq-1720 .cs-description {
+      font-family: 'Montserrat', sans-serif;  
+      font-size: 1.2rem;
+      font-weight: 500;  
+      color: #333;
+      margin: auto; 
+      margin-top: 8px;  
+      max-width: 800px;  
+  }
+    #faq-1720 .cs-flex-group {
+      width: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      /* 16px - 20px */
+      gap: clamp(1rem, 2.3vw, 1.25rem);
+      position: relative;
+    }
+    #faq-1720 .cs-wrapper {
+      width: 100%;
+      position: relative;
+    }
+    #faq-1720 .cs-button-group {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      /* 16px - 20px */
+      gap: clamp(1rem, 2.5vw, 1.25rem);
+      /* prevents flexbox from squishing it */
+      flex: none;
+    }
+    #faq-1720 .cs-flex {
+      width: 93%;
+      /* 24px - 32px */
+      padding: clamp(1.5rem, 3vw, 2rem);
+      background-color: #F7F7F7;
+      display: flex;
+      flex-direction:column;
+      order: 3;
+      gap: 1.25rem;
+    }
+    #faq-1720 .cs-option {
+      font-size: clamp(1rem, 2vw, 1.25rem); 
+      line-height: 1.2em; 
+      font-weight: 700; 
+      padding: 0; 
+      color: var(--bodyTextColor); 
+      background-color: transparent; 
+      border: none; 
+      display: flex; 
+      justify-content: flex-start;
+      align-items: center; 
+      gap: 1rem; 
+      position: relative; 
+      z-index: 1; 
+      transition: color 0.3s;
+    }
+    #faq-1720 .cs-option:hover {
+      color: var(--primary);
+      cursor: pointer;
+    }
+    #faq-1720 .cs-option.cs-active {
+      color: var(--primary);
+    }
+    #faq-1720 .cs-picture {
+      width: 110%;
+      /* 328px - 450px */
+      height: clamp(20.5rem, 30vw, 28.125rem); 
+      /* 16px - 20px */
+      margin: 0 0 clamp(1rem, 2.4vw, 1.25rem);
+      order: 2;
+      position: relative;
+      z-index: 1;
+    }
+    #faq-1720 .cs-picture img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    #faq-1720 .cs-faq-group {
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      order: 3;
+      gap: 0.5rem;
+      transition: transform 0.7s,
+                  opacity 0.3s,
+                  visibility 0.5s,
+                  top 0.3s,
+                  left 0.3s;
+      /* makes the transfrom scaling orgin the top left corner, dictates the direction by which the scale transforms animate towards */
+      transform-origin: top;
+      transform-style: preserve-3d;
+      perspective: 900px;
+    }
+    #faq-1720 .cs-faq-group.cs-hidden {
+      /* by using visibility:hidden instead of display:none, we can see the animations from the opacity and transforms, display:none won't render animations. */
+      visibility: hidden;
+      /* prevents the mouse from interacting with it */
+      pointer-events: none;
+      /* hidden galleries have a 0 opacity, and we animate the opacity to 1 when they become active */
+      opacity: 0;
+      /* this top and left value help control the animation, by setting it to position absolute and left 0, the FAQ won't fly off screen to the left, it will stop its position to be at the left edge of the .cs-flex-group (left: 0). Same for the bottom:0 value, the FAQ won't go past that position when it animates */
+      top: 0;
+      left: 0;
+      position: absolute;
+      /* prevents the hidden galleries from overflowing the section, and makes a nice animations to transition to and from */
+      transform: scaleY(0);
+    }
+    #faq-1720 .cs-faq-group.cs-hidden .cs-faq-item {
+      transform: rotateX(270deg);
+      opacity: 0;
+    }
+    #faq-1720 .cs-faq-item {
+      list-style: none;
+      width: 100%;
+      /* clips all corners of the button that overlap the rounded border */
+      overflow: hidden;
+      opacity: 1;
+      top: 0;
+      transform: rotateX(0deg);
+      transition: transform 0.6s,
+                  opacity 0.3s;
+    }
+    #faq-1720 .cs-faq-item:nth-of-type(2) {
+      transition-delay: 0.1s;
+    }
+    #faq-1720 .cs-faq-item:nth-of-type(3) {
+      transition-delay: 0.2s;
+    }
+    #faq-1720 .cs-faq-item:nth-of-type(4) {
+      transition-delay: 0.3s;
+    }
+    #faq-1720 .cs-faq-item:nth-of-type(5) {
+      transition-delay: 0.4s;
+    }
+    #faq-1720 .cs-faq-item:nth-of-type(6) {
+      transition-delay: 0.5s;
+    }
+    #faq-1720 .cs-faq-item:nth-of-type(7) {
+      transition-delay: 0.6s;
+    }
+    #faq-1720 .cs-faq-item:nth-of-type(8) {
+      transition-delay: 0.7s;
+    }
+    #faq-1720 .cs-faq-item:nth-of-type(9) {
+      transition-delay: 0.8s;
+    }
+    #faq-1720 .cs-faq-item:nth-of-type(10) {
+      transition-delay: 0.9s;
+    }
+    #faq-1720 .cs-faq-item.active .cs-button {
+      color: var(--primary);
+    }
+    #faq-1720 .cs-faq-item.active .cs-button:before {
+      background-color: var(--primary);
+      transform: rotate(315deg);
+    }
+    #faq-1720 .cs-faq-item.active .cs-button:after {
+      background-color: var(--primary);
+      transform: rotate(-315deg);
+    }
+    #faq-1720 .cs-faq-item.active .cs-item-p {
+      height: auto;
+      /* 20px - 24px bottom */
+      /* 16px - 24px left & right */
+      padding: 0 clamp(1rem, 2vw, 1.5rem) clamp(1.25rem, 1.3vw, 1.5rem);
+      opacity: 1;
+    }
+    #faq-1720 .cs-button {
+      /* 16px - 20px */
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      line-height: 1.2em;
+      text-align: left;
+      font-weight: bold;
+      /* 16px - 24px top & bottom */
+      /* 16px - 20px left & right */
+      padding: clamp(1rem, 2vw, 1.5rem) clamp(1rem, 2vw, 1.25rem);
+      background-color: #f7f7f7;
+      border: none;
+      color: var(--headerColor);
+      display: block;
+      width: 96%;
+      position: relative;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    #faq-1720 .cs-button:hover {
+      cursor: pointer;
+    }
+    #faq-1720 .cs-button:before {
+      /* left line */
+      content: "";
+      width: 0.5rem;
+      height: 0.125rem;
+      background-color: var(--headerColor);
+      opacity: 1;
+      border-radius: 50%;
+      position: absolute;
+      display: block;
+      top: 50%;
+      right: 1.5rem;
+      transform: rotate(45deg);
+      /* animate the transform from the left side of the x axis, and the center of the y */
+      transform-origin: left center;
+      transition: transform 0.5s;
+    }
+    #faq-1720 .cs-button:after {
+      /* right line */
+      content: "";
+      width: 0.5rem;
+      height: 0.125rem;
+      background-color: var(--headerColor);
+      opacity: 1;
+      border-radius: 50%;
+      position: absolute;
+      display: block;
+      top: 50%;
+      right: 1.3125rem;
+      transform: rotate(-45deg);
+      /* animate the transform from the right side of the x axis, and the center of the y */
+      transform-origin: right center;
+      transition: transform 0.5s;
+    }
+    #faq-1720 .cs-button-text {
+      width: 80%;
+      display: block;
+    }
+    #faq-1720 .cs-item-p {
+      /* 14px - 16px */
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(0.875rem, 1.5vw, 1rem);
+      line-height: 1.5em;
+      width: 90%;
+      height: 0;
+      margin: 0;
+      text-align:justify;
+      /* 16px - 24px */
+      padding: 0 clamp(1rem, 2vw, 1.5rem);
+      opacity: 0;
+      background-color: #f7f7f7;
+      color: var(--bodyTextColor);
+      /* clips the text so it doesn't show up */
+      overflow: hidden;
+      transition: opacity 0.3s, padding-bottom 0.3s;
+    }
+    #faq-1720 .cs-item-p img {
+      width: 100%; 
+      height: auto; 
+      margin-top: 1rem;
+  }
+  
+    .montserrat{
+        font-family: "Montserrat", sans-serif;
+        font-style: normal;
+      }
+  }
+  /* Inbetween - 600px */
+  @media only screen and (min-width: 37.5rem) {
+    #faq-1720 .cs-button-group {
+      width: 80%;
+      max-width: 22.0625rem;
+      flex-direction: row;
+      align-items: stretch;
+      flex: none;
+    }
+    #faq-1720 .cs-content {
+      width: 100%;
+    }
+    #faq-1720 .cs-picture {
+      /* 300px - 493px */
+      min-height: clamp(18.75rem, 30vw, 30.8125rem);
+      margin: 0;
+      height: 100%;
+      flex: none;
+      order: 3;
+    }
+    .montserrat{
+        font-family: "Montserrat", sans-serif;
+        font-style: normal;
+      }
+  }
+  /* Desktop - 1024px */
+  @media only screen and (min-width: 48rem) {
+    #faq-1720 .cs-flex-group {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      /* 20px - 80px */
+      column-gap: clamp(1.25rem, 3vw, 5rem);
+    }
+    #faq-1720 .cs-button-group {
+      flex-direction: column;
+      flex: auto;
+    }
+    #faq-1720 .cs-picture {
+      max-height: 31.25rem;
+    }
+    .montserrat{
+        font-family: "Montserrat", sans-serif;
+        font-style: normal;
+      }
+  }
+ 
+  #top-right-logo {
+    position: absolute; /* or 'fixed' to keep it in place on scroll */
+    top: 10px; /* Adjust as needed */
+    right: 10px; /* Adjust as needed */
+    width: 200px; /* Smaller width */
+    height: auto; /* Keep height auto to maintain aspect ratio */
+    z-index: 1000; /* Ensures the image is above other elements */
+}
+
+.cs-item-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 1rem;
+  margin-right: 1rem;
+}
+
+.cs-button-and-image-container {
+  padding: 0;
+  margin: 0px;
+}
+

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla desde JSON</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Apariciones por período de tiempo</h1>
+    <label for="filtroMunicipio">Filtrar por municipio:</label>
+    <input type="text" id="filtroMunicipio" oninput="filtrarTabla()">
+    <table id="tablaDatos">
+        <!-- Aquí se mostrarán los datos -->
+    </table>
+
+    <script>
+        fetch('pivot_html.json') // Cargar el archivo JSON
+            .then(response => response.json()) // Convertir la respuesta a JSON
+            .then(data => {
+                const table = document.getElementById('tablaDatos');
+                const headers = Object.keys(data[0]); // Obtener las cabeceras de la tabla
+
+                // Crear la fila de encabezados
+                let headerRow = table.insertRow();
+                headers.forEach(headerText => {
+                    let th = document.createElement('th');
+                    let text = document.createTextNode(headerText);
+                    th.appendChild(text);
+                    headerRow.appendChild(th);
+                });
+
+                // Crear las filas de datos
+                data.forEach(obj => {
+                    let row = table.insertRow();
+                    headers.forEach(header => {
+                        let cell = row.insertCell();
+                        let text = document.createTextNode(obj[header]);
+                        cell.appendChild(text);
+                    });
+                });
+            })
+            .catch(error => console.error('Error al cargar el archivo JSON:', error));
+
+        function filtrarTabla() {
+            const filtro = document.getElementById('filtroMunicipio').value.toLowerCase();
+            const table = document.getElementById('tablaDatos');
+            const rows = table.getElementsByTagName('tr');
+
+            for (let i = 1; i < rows.length; i++) {
+                const municipio = rows[i].getElementsByTagName('td')[1].innerText.toLowerCase();
+                if (municipio.includes(filtro)) {
+                    rows[i].style.display = '';
+                } else {
+                    rows[i].style.display = 'none';
+                }
+            }
+        }
+    </script>
+</body>
+</html>

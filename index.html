@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizacion Hackaton</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {  
+            font-family: "Montserrat", sans-serif;
+            background-color: #ece2e288; /* Example: light gray background */
+        }
+    </style>
+
+
+</head>
+
+<body class="Montserrat">
+    <img src="hack.png" alt="Hackathon Logo" id="top-right-logo">
+    <section id="faq-1720">
+        <div class="cs-container">
+            <div class="cs-content">
+                <p class="cs-description"> Adrián Berrón, José Luis Trujillo, Sebastián Ibarra, Fátima Ginebra 
+                </p>
+                <h2 class="">Conciencia y acción frente a las desapariciones de menores en Chiapas</h2>
+
+                <p class="cs-description"> Según los datos de 2023, desaparecen más de 10 niños y/o adolescentes cada semana. 
+                    Esto se traduce en más de 2,000 menores que han sido reportados como desaparecidos desde el 2020. Tenemos una 
+                    crisis alarmante entre las niñas y adolescentes, quienes constituyen más del 70% de estos casos. 
+                </p>
+                
+            </div>
+            <div class="cs-flex-group">
+                <div class="cs-button-group">
+                    <!--If you need to add another button, make sure to copy and paste from one of the buttons here and increment the data-filter value, so the next one would be data-filter="four", and so on-->
+                    <div class="cs-flex">
+                        <button class="cs-option" data-filter="one">
+                            <img class="cs-icon" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Graphics/plus.svg" alt="plus graphic" width="12" height="12" decoding="async" aria-hidden="true">
+                            Contexto y gravedad de la situación
+                        </button>
+                        <button class="cs-option" data-filter="four">
+                            <img class="cs-icon" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Graphics/plus.svg" alt="plus graphic" width="12" height="12" decoding="async" aria-hidden="true">
+                            Análisis exploratorio de datos
+                        </button>
+                        <button class="cs-option" data-filter="two">
+                            <img class="cs-icon" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Graphics/plus.svg" alt="plus graphic" width="12" height="12" decoding="async" aria-hidden="true">
+                            Información por municipio
+                        </button>
+                        <button class="cs-option" data-filter="three">
+                            <img class="cs-icon" src="https://csimg.nyc3.cdn.digitaloceanspaces.com/Images/Graphics/plus.svg" alt="plus graphic" width="12" height="12" decoding="async" aria-hidden="true">
+                            ¿Por qué tu denuncia es importante?
+                        </button>
+                    </div>
+                    <picture class="cs-picture">
+                        <!--Mobile Image-->
+                        <source media="(max-width: 600px)" srcset="https://raw.githubusercontent.com/dataviz-itam/hackaton-infancia-equipo-fajs/main/denuncia_imagen.png">
+                        <!--Tablet and above Image-->
+                        <source media="(min-width: 601px)" srcset="https://raw.githubusercontent.com/dataviz-itam/hackaton-infancia-equipo-fajs/main/denuncia_imagen.png">
+                        <img loading="lazy" decoding="async" src="https://raw.githubusercontent.com/dataviz-itam/hackaton-infancia-equipo-fajs/main/denuncia_imagen.png" alt="Description of the image" width="353" height="493">
+                    </picture>
+                </div>
+                <div class="cs-wrapper">
+                    <ul class="cs-faq-group" data-category="one">
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-button-text">
+                                    Situación Actual
+                                </span>
+                            </button>
+                            <p class="cs-item-p">
+                                La situación de desaparición de menores es muy grave en todo el país, particularmente,
+                                 en Chiapas la situación es muy grave. Durante el 2022 tuvo el cuarto puesto dentro de 
+                                 los estados del país con más desapariciones de menores, siendo las más afectadas las niñas 
+                                 y adolescentes.    
+                            </p>
+                            <p class="cs-item-p">
+                                Los datos nos muestran que a lo largo de los años el problema no ha mejorado; sigue 
+                                afectando profundamente a nuestras comunidades. Con nuestro proyecto en este hackatón, 
+                                buscamos promover una respuesta inmediata para salvaguardar a los grupos más vulnerables. 
+                                Recordemos que no son sólo cifras, sino vidas humanas que merecen protección y justicia.
+                                <img src="cristobal.jpeg" alt="Visualización de Cristobal" class="cs-item-img">
+                            </p>
+                        </li>
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-button-text">
+                                    Casos por municipio
+                                </span>
+                            </button>
+                            <!-- Usa un div en lugar de un párrafo para contener el mapa -->
+                            <div class="cs-item-p">
+                                <div id="mapid" style="width: 100%; height: 400px;"></div>
+                            </div>                          
+                        </li>                          
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-button-text">
+                                    Objetivos y motivación del proyecto
+                                </span>
+                            </button>
+                            <p class="cs-item-p">
+                                Hoy, con la desaparición de niños, niñas y adolescentes, nos enfrentamos a un desafío 
+                                muy grande en el país. En especial, este problema toca el corazón de Chiapas, que es 
+                                el cuarto estado con mayor cantidad de denuncias de menores desaparecidos, y nos llama 
+                                a todos a la acción.
+                            </p>
+                            <p class="cs-item-p">
+                                Gracias al trabajo de Melel Xojobal y Redias, hoy contamos con un registro que nos muestra 
+                                que más de 2,000 menores han sido reportados como desaparecidos entre el 2020 y el 2023 
+                                solamente en el estado de Chiapas, con una prevalencia alarmante entre las niñas y 
+                                adolescentes, quienes constituyen más del 70% de estos casos. 
+                                <img src="melel_xojobal.png" alt="melel xojobal" class="cs-item-img">
+                                <a href="https://melelxojobal.org.mx/publicaciones/nineces-frente-a-las-violencias-criminales-en-san-cristobal-de-las-casas-chiapas/" target="_blank">Descubre cómo puedes ayudar</a>
+
+                            </p>
+                            <p class="cs-item-p">
+                                Con este proyecto buscamos generar conciencia e invitar a la acción para cambiar el futuro
+                                de nuestro país. Está en nuestras manos generar el cambio. 
+                            </p>
+
+
+                        </li>
+                        
+                    </ul>
+                    <ul class="cs-faq-group cs-hidden" data-category="two">
+                        <!-- Active class added as default -->
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-button-text">
+                                    Mapa de desapariciones
+                                </span>
+                            </button>
+                            <div class="cs-item-p" style="width: 100%; padding: 0;">
+                                <div id="mapid2" style="width: 100%; height: 400px;"></div>
+                            <img src="https://raw.githubusercontent.com/dataviz-itam/hackaton-infancia-equipo-fajs/main/grafica.jpeg" alt="Localizaciones por tiempo de búsqueda">
+                            </div>
+                        </li>
+                    </li>
+                    <li class="cs-faq-item">
+                        <button class="cs-button">
+                            <span class="cs-button-text">
+                                Apariciones por período de tiempo
+                            </span>
+                        </button>
+                        <p class="cs-item-p">
+                            A continuación, se muestra una tabla en la cual se ven las apariciones de menores reportados desparecidos de acuerdo al rango de tiempo en el cual se hallaron después de la denuncia.
+                            El objetivo de esta gráfica es mostrar que la mayoría de las apariciones, en todos los municipios, ocurrieron en la primera semana del reporte de la desaparición.
+
+                            <a href="http://127.0.0.1:5500/index3.html" target = "_blank">Tabla</a>
+                        </p>
+                    </li>
+                    </ul>
+                    <ul class="cs-faq-group cs-hidden" data-category="three">
+                        <!-- Active class added as default -->
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-button-text">
+                                    Casos de éxito
+                                </span>
+                            </button>
+                            <p class="cs-item-p">
+                                En Jiquipilas, un niño de 12 años llamado Joaquín Alejandro desapareció mientras recolectaba plástico
+                                 con su madre cerca de un basurero municipal. Tras perderlo de vista, la madre inició una búsqueda 
+                                 intensa, pidiendo ayuda a vecinos y autoridades. Finalmente, tras una búsqueda coordinada en la que 
+                                 participaron vehículos anunciadores y elementos de seguridad, el niño fue encontrado sano y salvo y 
+                                 regresó a su hogar, donde fue recibido con lágrimas de felicidad por su familia.
+                                <img src="https://raw.githubusercontent.com/dataviz-itam/hackaton-infancia-equipo-fajs/main/policias.jpeg" alt="Policías en acción en Jiquipilas, Chiapas">
+                            </p>
+                            <p class="cs-item-p">
+                                <a href="https://www.elheraldodechiapas.com.mx/policiaca/jiquipilas-se-pierde-nino-y-fue-localizado-por-policias-10381581.html" target="_blank">Lee la noticia completa aquí</a>
+                            </p>
+                        </li>
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-button-text">
+                                    La acción rápida salva vidas
+                                </span>
+                            </button>
+                            <p class="cs-item-p">
+                                Esta crisis no es solo un reflejo de la violación de nuestros derechos más básicos, 
+                                como la integridad y la libertad, sino también una violación de nuestro derecho a 
+                                vivir en un entorno seguro y protegido. Al denunciar, no solo protegemos al individuo 
+                                desaparecido, sino que fortalecemos a toda nuestra comunidad contra la impunidad…. 
+                                Estamos frente a un desafío que no podemos ignorar. Es esencial entender que, detrás 
+                                de cada número, hay una historia no contada, un futuro incierto, y un llamado a la acción.
+                            </p>
+                            <p class="cs-item-p">
+                                Juntos, podemos trabajar hacia un futuro donde ningún niño o adolescente en Chiapas deba 
+                                enfrentarse al temor de desaparecer sin dejar rastro. Este es el momento de actuar, de 
+                                ser parte de la solución. ¿Nos acompañas en este compromiso por nuestros niños y niñas?
+                            </p>
+                        </li>
+                    </p>
+                        </li>
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-button-text">
+                                    ¿Por qué tanta importancia en la rápida denuncia?
+                                </span>
+                            </button>
+                            <p class="cs-item-p">
+                                Cuanto más rápido intervengamos, más información podemos recoger.
+                            </p>
+                            <p class="cs-item-p">
+                                La persona desaparecida puede alejarse más de la zona en la que se vio por última vez.
+                            </p>
+                            <p class="cs-item-p">
+                                Es más fácil encontrar testigos valiosos y pistas para la investigación.
+                            </p>
+                            <p class="cs-item-p">
+                                Tenemos recuerdos más frescos. Nos es más fácil reconstruir lo que ha ocurrido con anterioridad.
+                                Hay muchos datos que se tienen con certeza en las primeras horas y que, después, se pueden perder.
+                            </p>
+                        </li>
+                    </ul>
+                    <ul class="cs-faq-group cs-hidden" data-category="four">
+                        <!-- Active class added as default -->
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-button-text">
+                                    Distribución de género
+                                </span>
+                            </button>
+                            <p class="cs-item-p">
+                                El 74% de las personas desaparecidas son mujeres, mientras que
+                                el 26% son hombres; lo que pone de relieve una importante
+                                disparidad de género en las desapariciones.
+                            </p>
+                        </li>
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-button-text">
+                                    Etnicidad y condición migratoria
+                                </span>
+                            </button>
+                            <p class="cs-item-p">
+                                Etnia: 1,288 personas se identifican como mestizas y 693 como indígenas.
+                                Esto sugiere que los dos principales grupos étnicos se ven
+                                significativamente afectados.
+                            </p>
+                            <p class="cs-item-p">
+                                Estatus migrante: La mayoría de los casos no especifican el estatus migratorio,
+                                pero hay algunos casos que involucran a inmigrantes de Honduras (18), Guatemala (7),
+                                Haití (2), El Salvador, Ecuador y Venezuela.
+                            </p>
+                        </li>
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-button-text">
+                                    Día y hora de la desaparición
+                                </span>
+                            </button>
+                            <p class="cs-item-p">
+                                Día de la semana: Las desapariciones son ligeramente más frecuentes
+                                los viernes, seguidos de cerca por los lunes y sábados.
+                            </p>
+                            <p class="cs-item-p">
+                                Hora del día: Muchas desapariciones no están especificadas por hora,
+                                pero sí el horario de la mañana como las 10:00 a.m. y las 7:00 a.m.
+                                y el de la tarde alrededor de las 4:00 p.m. son tiempos anotados.
+                            </p>
+                    </li>
+                        <li class="cs-faq-item">
+                            <button class="cs-button">
+                                <span class="cs-button-text">
+                                    Estado de los casos
+                                </span>
+                            </button>
+                            <p class="cs-item-p">
+                                De los casos del conjunto de datos, 1.365 han sido resueltos con la persona encontrada con vida,
+                                610 aún no han sido localizados y 6 fueron encontrados fallecidos.
+                                Esto pone de relieve la gravedad de la situación y la importancia de intervenciones oportunas.
+                            </p>
+                        </li>
+                    </li>
+                    <li class="cs-faq-item">
+                        <button class="cs-button">
+                            <span class="cs-button-text">
+                                Distribución regional
+                            </span>
+                        </button>
+                        <p class="cs-item-p">
+                            Distribución regional: La región 'Metropolitana' (presumiblemente incluyendo a Tuxtla Gutiérrez) tiene el
+                            mayor número de desapariciones, seguida por 'Soconusco' y 'Altos'.
+                            Esto podría indicar que las áreas urbanas o fronterizas son zonas de mayor riesgo.
+                        </p>
+                        
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const faqItems = Array.from(document.querySelectorAll('.cs-faq-item'));
+        for (const item of faqItems) {
+            const onClick = () => {
+                item.classList.toggle('active');
+            };
+            item.addEventListener('click', onClick);
+        }
+    
+        class FAQFilter {
+            filtersSelector = '.cs-option';
+            FAQselector = '.cs-faq-group';
+            activeClass = 'cs-active';
+            hiddenClass = 'cs-hidden';
+    
+            constructor() {
+                const $filters = document.querySelectorAll(this.filtersSelector);
+                this.$activeFilter = $filters[0];
+                this.$images = document.querySelectorAll(this.FAQselector);
+    
+                this.$activeFilter.classList.add(this.activeClass);
+    
+                for (const $filter of $filters) {
+                    $filter.addEventListener('click', () => this.onClick($filter));
+                }
+            }
+    
+            onClick($filter) {
+                this.filter($filter.dataset.filter);
+                const { activeClass } = this;
+    
+                this.$activeFilter.classList.remove(activeClass);
+                $filter.classList.add(activeClass);
+    
+                this.$activeFilter = $filter;
+            }
+    
+            filter(filter) {
+                const showAll = filter == 'all';
+                const { hiddenClass } = this;
+    
+                for (const $image of this.$images) {
+                    const show = showAll || $image.dataset.category === filter;
+                    $image.classList.toggle(hiddenClass, !show);
+                }
+            }
+        }
+    
+        new FAQFilter();
+    </script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"/>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script type="module" src="carga_datos.js"></script>
+    <script type="module" src="main2.js"></script>
+</body>
+</html>

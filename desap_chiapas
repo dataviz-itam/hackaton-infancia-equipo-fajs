@@ -1,0 +1,448 @@
+import pandas as pd
+
+# Datos proporcionados
+data = [
+    ("000", "Chiapas", 37.5, 6.9, 18.3, 61.3, 13.7, 7.78, "Muy alto"),
+    ("001", "Acacoyagua", 37.5, 7.6, 16.1, 61.4, 10.8, 7.12, "Medio"),
+    ("002", "Acala", 35.5, 8, 20.3, 63.9, 15.9, 7.26, "Medio"),
+    ("003", "Acapetahua", 31.1, 6.7, 15.5, 66.9, 13.7, 7.15, "Alto"),
+    ("004", "Altamirano", 46.4, 10, 22.8, 49.6, 23, 6.05, "Alto"),
+    ("005", "Amatán", 24.2, 6.1, 20.2, 51.5, 17.1, 6.58, "Alto"),
+    ("006", "Amatenango de la Frontera", 41, 4.5, 20.2, 57.9, 15.4, 6.55, "Alto"),
+    ("007", "Amatenango del Valle", 37.4, 5.3, 32.7, 34.8, 26.5, 5.15, "Muy alto"),
+    ("008", "Angel Albino Corzo", 49.4, 8.5, 17.2, 62.3, 17.6, 6.66, "Alto"),
+    ("009", "Arriaga", 25.1, 4.6, 10, 77.4, 8.4, 8.45, "Medio"),
+    ("010", "Bejucal de Ocampo", 42.5, 3.3, 17.5, 47.2, 10.8, 6.49, "Alto"),
+    ("011", "Bella Vista", 32.5, 4.7, 12.2, 64.7, 10.1, 6.84, "Alto"),
+    ("012", "Berriozábal", 42.5, 9.2, 20.1, 55.7, 10, 8.1, "Medio"),
+    ("013", "Bochil", 22.3, 3.2, 18.3, 58.1, 14, 7.46, "Alto"),
+    ("014", "El Bosque", 45.6, 8.3, 26.1, 40.9, 22.5, 5.91, "Alto"),
+    ("015", "Cacahoatán", 43.7, 5.2, 10.4, 76.4, 9.9, 8.26, "Medio"),
+    ("016", "Catazajá", 28.7, 8, 11.4, 77.8, 12.9, 7.54, "Alto"),
+    ("017", "Cintalapa", 33.7, 5.4, 11.2, 72.2, 10, 8.04, "Medio"),
+    ("018", "Coapilla", 26.4, 4.5, 17.3, 53.1, 14.8, 6.96, "Alto"),
+    ("019", "Comitán de Domínguez", 32.7, 5.7, 14.7, 65.6, 9.1, 8.55, "Bajo"),
+    ("020", "La Concordia", 41.5, 8.9, 16.6, 58.6, 17.5, 6.52, "Alto"),
+    ("021", "Copainalá", 21.3, 3.3, 12.6, 71.8, 10.7, 7.84, "Medio"),
+    ("022", "Chalchihuitán", 50.4, 12, 45.3, 22.7, 29.2, 4.91, "Muy alto"),
+    ("023", "Chamula", 47.1, 6.4, 43.3, 19.8, 32.6, 4.37, "Muy alto"),
+    ("024", "Chanal", 37.3, 4.5, 19.3, 48.2, 22.4, 6.33, "Muy alto"),
+    ("025", "Chapultenango", 16, 2.4, 12.4, 73.5, 14.7, 7.69, "Alto"),
+    ("026", "Chenalhó", 54.2, 15.2, 46.5, 23.5, 27.6, 4.89, "Muy alto"),
+    ("027", "Chiapa de Corzo", 33.1, 6.4, 11.5, 72.3, 9.1, 8.9, "Bajo"),
+    ("028", "Chiapilla", 22.9, 3.6, 11.7, 69.5, 21.9, 6.14, "Alto"),
+    ("029", "Chicoasén", 25.2, 5.8, 3.7, 71.6, 11.5, 7.37, "Medio"),
+    ("030", "Chicomuselo", 31.7, 4.8, 14.2, 63.9, 16.2, 6.3, "Alto"),
+    ("031", "Chilón", 46.5, 10.3, 22.3, 54.5, 26.6, 6.07, "Muy alto"),
+    ("032", "Escuintla", 34.9, 6.2, 12.7, 68.6, 12, 7.52, "Alto"),
+    ("033", "Francisco León", 14.3, 3.5, 11.8, 64.9, 20, 6.4, "Alto"),
+    ("034", "Frontera Comalapa", 37.8, 6.5, 14.9, 64.3, 11, 7.16, "Medio"),
+    ("035", "Frontera Hidalgo", 39.8, 11.5, 14.9, 71.6, 12.8, 7.84, "Alto"),
+    ("036", "La Grandeza", 35.9, 3.6, 18.5, 61.4, 8.9, 7.63, "Alto"),
+    ("037", "Huehuetán", 45, 9.2, 13.3, 72.2, 12.4, 8.13, "Alto"),
+    ("038", "Huixtán", 37.3, 4.4, 19.3, 49.3, 18.3, 6.3, "Muy alto"),
+    ("039", "Huitiupán", 25.1, 4.1, 27.1, 48.8, 21.7, 6.16, "Alto"),
+    ("040", "Huixtla", 47.1, 8, 12, 70.7, 8.9, 8.34, "Medio"),
+    ("041", "La Independencia", 35.4, 6.2, 35.8, 37.2, 12.6, 6.01, "Alto"),
+    ("042", "Ixhuatán", 20.8, 3.2, 20.7, 49.6, 13.9, 7.11, "Medio"),
+    ("043", "Ixtacomitán", 19.8, 4.6, 10.7, 66.7, 10.2, 8.45, "Medio"),
+    ("044", "Ixtapa", 27, 6.4, 22.3, 46, 13.4, 7.09, "Alto"),
+    ("045", "Ixtapangajoya", 30.9, 6, 21.1, 63.9, 13.3, 6.98, "Alto"),
+    ("046", "Jiquipilas", 25.1, 4.2, 10.5, 74.9, 10.5, 7.74, "Medio"),
+    ("047", "Jitotol", 33.5, 6.3, 19.8, 50.2, 15.8, 7.24, "Alto"),
+    ("048", "Juárez", 31, 5.1, 10.6, 74.9, 10.3, 7.85, "Medio"),
+    ("049", "Larráinzar", 33, 3.3, 29.7, 39.1, 17.4, 6.32, "Alto"),
+    ("050", "La Libertad", 33.7, 9.4, 13.1, 71.9, 12, 7.56, "Medio"),
+    ("051", "Mapastepec", 36.4, 5.8, 14.2, 67.3, 11.9, 7.13, "Medio"),
+    ("052", "Las Margaritas", 36.5, 6.7, 28.2, 42.9, 18.8, 6.22, "Alto"),
+    ("053", "Mazapa de Madero", 34.8, 5.6, 17.6, 60.3, 8.1, 6.84, "Alto"),
+    ("054", "Mazatán", 41.2, 8.2, 14.2, 66.4, 11.4, 7.69, "Alto"),
+    ("055", "Metapa", 31.6, 6, 11.2, 79.3, 8.3, 8.58, "Medio"),
+    ("056", "Mitontic", 58.9, 12.8, 45.2, 29.6, 36.6, 4.47, "Muy alto"),
+    ("057", "Motozintla", 40.4, 5, 15.2, 61.8, 10.5, 7.21, "Medio"),
+    ("058", "Nicolás Ruíz", 39.3, 2.8, 14.9, 67.2, 14.2, 6.22, "Alto"),
+    ("059", "Ocosingo", 42.9, 8.7, 19.9, 59.2, 21.9, 6.59, "Muy alto"),
+    ("060", "Ocotepec", 28.5, 5, 26.7, 50.5, 28, 5.63, "Alto"),
+    ("061", "Ocozocoautla de Espinosa", 44.2, 7.2, 20, 58.2, 10.3, 7.51, "Medio"),
+    ("062", "Ostuacán", 32.2, 5.6, 15.1, 70.7, 12.6, 7.28, "Alto"),
+    ("063", "Osumacinta", 18.5, 4.4, 8.3, 78.1, 7.4, 7.91, "Medio"),
+    ("064", "Oxchuc", 46.8, 5.4, 11, 65.6, 16, 7.15, "Muy alto"),
+    ("065", "Palenque", 28, 5.1, 13.1, 68.1, 14.2, 7.81, "Medio"),
+    ("066", "Pantelhó", 58.2, 20.5, 42.9, 33.1, 36, 4.66, "Muy alto"),
+    ("067", "Pantepec", 17.1, 3.5, 13.1, 65.1, 22.4, 6.46, "Alto"),
+    ("068", "Pichucalco", 27.8, 5.5, 10.7, 77.4, 11.2, 8.45, "Medio"),
+    ("069", "Pijijiapan", 26.7, 4.4, 11.2, 72.3, 12.3, 7.4, "Alto"),
+    ("070", "El Porvenir", 46.8, 10.7, 14.5, 57.8, 8.8, 7.34, "Medio"),
+    ("071", "Villa Comaltitlán", 38.4, 7.6, 14.7, 68.6, 12.2, 7.27, "Alto"),
+    ("072", "Pueblo Nuevo Solistahuacán", 32.5, 7.1, 22.8, 48.1, 19.5, 6.53, "Alto"),
+    ("073", "Rayón", 15, 2.9, 17.7, 61.9, 16, 7.59, "Alto"),
+    ("074", "Reforma", 35.3, 4.2, 10.1, 74.1, 6.5, 8.91, "Bajo"),
+    ("075", "Las Rosas", 40.4, 10.6, 31.3, 46.4, 21.4, 6.06, "Alto"),
+    ("076", "Sabanilla", 24.3, 3.9, 12.7, 61.4, 20.2, 6.72, "Alto"),
+    ("077", "Salto de Agua", 29.3, 4.4, 13.2, 66.3, 23.1, 6.52, "Muy alto"),
+    ("078", "San Cristóbal de las Casas", 32.4, 6.4, 18.5, 65.3, 9.2, 9.4, "Bajo"),
+    ("079", "San Fernando", 39.1, 7.2, 20, 55.5, 10.8, 7.28, "Medio"),
+    ("080", "Siltepec", 37.8, 3.3, 10, 67.3, 15.1, 6.78, "Alto"),
+    ("081", "Simojovel", 41.2, 9.7, 30.8, 43.6, 24.6, 6.07, "Muy alto"),
+    ("082", "Sitalá", 59.5, 19.9, 35, 40.7, 40.1, 4.52, "Muy alto"),
+    ("083", "Socoltenango", 23.5, 5.2, 22.4, 50, 17.6, 6.35, "Alto"),
+    ("084", "Solosuchiapa", 27.9, 4.3, 20.7, 63.2, 13.9, 7.09, "Alto"),
+    ("085", "Soyaló", 22.8, 5.5, 21.7, 52.6, 14.1, 6.9, "Alto"),
+    ("086", "Suchiapa", 35.5, 5.5, 9.9, 73.3, 11.7, 8.67, "Medio"),
+    ("087", "Suchiate", 56.4, 15.4, 24, 56.6, 14.3, 6.78, "Alto"),
+    ("088", "Sunuapa", 17.4, 1.3, 12.8, 79.1, 12.4, 7.69, "Alto"),
+    ("089", "Tapachula", 46.6, 8.2, 12, 74.5, 6.9, 9.33, "Bajo"),
+    ("090", "Tapalapa", 17.8, 2, 8.6, 70.7, 13.4, 7.07, "Alto"),
+    ("091", "Tapilula", 14.2, 3.1, 11.6, 75.9, 11.6, 8.48, "Bajo"),
+    ("092", "Tecpatán", 26.5, 4.2, 11.4, 65.9, 14, 6.86, "Alto"),
+    ("093", "Tenejapa", 47.2, 6, 26.1, 39.6, 19.3, 5.86, "Alto"),
+    ("094", "Teopisca", 36.2, 7.7, 38.5, 33.6, 21, 5.59, "Alto"),
+    ("096", "Tila", 29.7, 4.7, 14.1, 61.7, 23, 6.47, "Muy alto"),
+    ("097", "Tonalá", 20.2, 4.7, 9.2, 75.8, 9.3, 8.47, "Bajo"),
+    ("098", "Totolapa", 43.1, 6.2, 19.1, 52.2, 25.4, 5.87, "Alto"),
+    ("099", "La Trinitaria", 32.4, 4.7, 20.5, 49, 13.8, 6.34, "Alto"),
+    ("100", "Tumbalá", 35, 6.1, 17.2, 64.1, 26.7, 6.17, "Muy alto"),
+    ("101", "Tuxtla Gutiérrez", 32.1, 4.9, 7.5, 82.4, 3.8, 11.04, "Muy bajo"),
+    ("102", "Tuxtla Chico", 42.9, 6.5, 9.8, 77.6, 11.2, 8.54, "Alto"),
+    ("103", "Tuzantán", 45.8, 7.2, 12.3, 70.5, 10.8, 7.49, "Alto"),
+    ("104", "Tzimol", 30.1, 4.6, 18.5, 54.2, 16.8, 6.45, "Medio"),
+    ("105", "Unión Juárez", 40.9, 5.1, 9, 81.4, 10.6, 8.13, "Medio"),
+    ("106", "Venustiano Carranza", 27.7, 6.6, 16.9, 56.8, 20.6, 6.59, "Alto"),
+    ("107", "Villa Corzo", 35.1, 8.2, 17.4, 64, 15.4, 7.35, "Alto"),
+    ("108", "Villaflores", 35.8, 6.4, 13, 70.3, 11.1, 8.07, "Medio"),
+    ("109", "Yajalón", 42.9, 12.5, 25.8, 54.8, 23.6, 6.91, "Alto"),
+    ("110", "San Lucas", 34.6, 3.5, 15.9, 53, 21.3, 5.98, "Alto"),
+    ("111", "Zinacantán", 57.8, 9.6, 50.2, 15.8, 31, 4.57, "Muy alto"),
+    ("112", "San Juan Cancuc", 54.9, 9.3, 23.1, 46, 30.8, 5.4, "Muy alto"),
+    ("113", "Aldama", 32.6, 5, 32.3, 31.5, 21.2, 5.79, "Alto"),
+    ("114", "Benemérito de las Américas", 42.5, 10.6, 20.1, 55.9, 14.9, 6.6, "Alto"),
+    ("115", "Maravilla Tenejapa", 33.4, 9.2, 36.2, 34.6, 19.2, 5.68, "Muy alto"),
+    ("116", "Marqués de Comillas", 40, 8.6, 22.8, 51.5, 18.8, 6.21, "Alto"),
+    ("117", "Montecristo de Guerrero", 47, 5, 16, 66.6, 14.6, 6.39, "Alto"),
+    ("118", "San Andrés Duraznal", 55.4, 14.7, 43.8, 32.6, 29.4, 4.99, "Alto"),
+    ("119", "Santiago el Pinar", 52.4, 4.9, 13.1, 59.6, 33.2, 5.67, "Muy alto"),
+    ("120", "Capitán Luis Ángel Vidal", 33.3, 4, 14, 65.9, 15.1, 6.32, "Alto"),
+    ("121", "Rincón Chamula San Pedro", 34.2, 5.1, 38.4, 31.6, 24.2, 5.36, "Alto"),
+    ("122", "El Parral", 25.4, 6, 13, 71, 14.2, 7.09, "Medio"),
+    ("123", "Emiliano Zapata", 25, 3.2, 11.2, 72.3, 13.1, 7.47, "Medio"),
+    ("124", "Mezcalapa", 44.1, 8.2, 19, 56.9, 13.5, 6.89, "Alto"),
+    ("125", "Honduras de la Sierra", 30.6, 2.9, 10.4, 67.5, 18.5, 6.17, "Alto")
+
+    
+]
+
+# Definición de columnas
+columns = ["Clave", "Municipio", "Población que no asiste a la escuela de 3 a 5 años (%)", "Población que no asiste a la escuela de 6 a 11 años (%)", "Población que no asiste a la escuela de 12 a 14 años (%)", "Población que asiste a la escuela de 15 a 17 años (%)", "Población que no sabe leer y escribir (%, 15 años o más)", "Grado de escolaridad promedio", "Índice de marginación"]
+
+# Creación del DataFrame
+df = pd.DataFrame(data, columns=columns)
+
+# Visualización del DataFrame
+df
+
+
+# In[209]:
+
+
+df.to_excel("escolaridad_chiapas_2020.xlsx",index = False)
+
+
+# # a ver qpd con los periodos de desaparicion
+
+# In[210]:
+
+
+desap = pd.read_csv("desapariciones_chiapas.csv")
+desap
+
+
+# In[211]:
+
+
+desap["Municipio "] = desap["Municipio "].str.replace(", Chiapas","")
+
+
+# In[212]:
+
+
+desap["Municipio "] = desap["Municipio "].str.replace(" ","")
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[213]:
+
+
+data = {
+    'Ciudad': ['Mazatan', 'Metapa', 'Mitontic', 'Montecristo-de-Guerrero', 'Motozintla', 'Nicolas-Ruiz', 'Ocosingo', 'Ocotepec', 'Ocozocoautla-de-Espinosa', 'Ostuacan', 'Osumacinta', 'Oxchuc', 'Palenque', 'Pantelho', 'Pantepec', 'Pichucalco', 'Pijijiapan', 'Pueblo-Nuevo-Solistahuacan', 'Rayon', 'Reforma', 'Sabanilla', 'Salto-de-Agua', 'San-Andres-Duraznal', 'San-Cristobal-de-las-Casas', 'San-Fernando', 'San-Juan-Cancuc', 'San-Lucas', 'Santiago-El-Pinar', 'Siltepec', 'Simojovel', 'Sitala', 'Socoltenango', 'Solosuchiapa', 'Soyalo', 'Suchiapa', 'Suchiate', 'Sunuapa', 'Tapachula', 'Tapalapa', 'Tapilula', 'Tecpatan', 'Tenejapa', 'Teopisca', 'Tila', 'Tonala', 'Totolapa', 'Tumbala', 'Tuxtla-Chico', 'Tuxtla-Gutierrez', 'Tuzantan', 'Tzimol', 'Union-Juarez', 'Venustiano-Carranza', 'Villa-Comaltitlan', 'Villa-Corzo', 'Villaflores', 'Yajalon',
+              'Acacoyagua', 'Acala', 'Acapetahua', 'Aldama', 'Altamirano', 'Amatan', 'Amatenango-de-La-Frontera', 'Amatenango-Del-Valle', 'Angel-Albino-Corzo', 'Arriaga', 'Bejucal-de-Ocampo', 'Bella-Vista', 'Benemerito-de-las-Americas', 'Berriozabal', 'Bochil', 'Cacahoatan', 'Catazaja', 'Chalchihuitan', 'Chamula', 'Chanal', 'Chapultenango', 'Chenalho', 'Chiapa-de-Corzo', 'Chiapilla', 'Chicoasen', 'Chicomuselo', 'Chilon', 'Cintalapa', 'Coapilla', 'Comitan-de-Dominguez', 'Copainala', 'El-Bosque', 'El-Porvenir', 'Escuintla', 'Francisco-Leon', 'Frontera-Comalapa', 'Frontera-Hidalgo', 'Huehuetan', 'Huitiupan', 'Huixtan', 'Huixtla', 'Ixhuatan', 'Ixtacomitan', 'Ixtapa', 'Ixtapangajoya', 'Jiquipilas', 'Jitotol', 'Juarez', 'La-Concordia', 'La-Grandeza', 'La-Independencia', 'La-Libertad', 'La-Trinitaria', 'Larrainzar', 'Las-Margaritas', 'Las-Rosas', 'Mapastepec', 'Maravilla-Tenejapa', 'Marques-de-Comillas',"Mazapa-de-Madero"],
+    'Coordenadas': ['14.93975,-92.51478', '14.84045,-92.18849', '16.88246,-92.54534', '15.35000,-92.75000', '15.37092,-92.24847', '15.26667,-92.40000', '16.82066,-92.21800', '17.22104,-93.15655', '16.66947,-93.50469', '17.40946,-93.33619', '16.93598,-93.09172', '16.85000,-92.41667', '17.51003,-91.98150', '17.00698,-92.47017', '17.18778,-93.05000', '17.55635,-93.03448', '15.53673,-93.15658', '17.19068,-92.87280', '17.20083,-93.01167', '17.83100,-93.28649', '17.37680,-92.68652', '17.55832,-92.34537', '16.61667,-93.60000', '16.73858,-92.63328', '14.93333,-92.41667', '16.89191,-92.37079', '16.60415,-92.71053', '16.13333,-92.98333', '15.55718,-92.32322', '17.14058,-92.71090', '17.02441,-92.30585', '16.80000,-92.16667', '17.42978,-93.03555', '16.89057,-92.92273', '16.62448,-93.09863', '15.33333,-92.43333', '17.48886,-93.24251', '14.97740,-92.26497', '17.23095,-93.10773', '17.24925,-93.01670', '17.13604,-93.31069', '16.81819,-92.50751', '16.54102,-92.47460', '17.46918,-92.52015', '15.88071,-93.52759', '16.54449,-92.68159', '17.27963,-92.31595', '14.96976,-92.19039', '16.71165,-93.11121', '15.14511,-92.42574', '16.00964,-92.22843', '15.05346,-92.14213', '16.44037,-92.45615', '15.21272,-92.57624', '16.18539,-93.26819', '16.34870,-93.53351', '17.17074,-92.32979',
+                    '15.34004,-92.67422', '16.53738,-92.89280', '15.28047,-92.69030', '16.91667,-92.68333', '16.73430,-92.03622', '17.37361,-92.81806', '15.56168,-92.07676', '16.52722,-92.43472', '15.82646,-92.68573', '16.30969,-93.82084', '15.45443,-92.15784', '15.58237,-92.23053', '16.40303,-90.63092', '16.79789,-93.27276', '16.99647,-92.89437', '15.02558,-92.14757', '17.73497,-92.10086', '16.96380,-92.61833', '16.78401,-92.68963', '16.65367,-92.25601', '17.33940,-93.12970', '17.61667,-93.03333', '16.56361,-93.02250', '16.57063,-92.72359', '16.95521,-93.10334', '15.74539,-92.28321', '17.10468,-92.27366', '16.66404,-93.80055', '17.13063,-93.16019', '16.24983,-92.13172', '17.09187,-93.21081', '17.02521,-92.80754', '16.26863,-92.16253', '15.33594,-92.49718', '16.00000,-93.78333', '15.65950,-92.14210', '14.79520,-92.23919', '15.03858,-92.28445', '17.17056,-92.68534', '16.68727,-92.32377', '15.13855,-92.46467', '17.29387,-92.94247', '16.75000,-93.20000', '16.80678,-92.90265', '17.49583,-93.00222', '16.42289,-93.78692', '16.73611,-92.03889', '17.73230,-93.36548', '15.20000,-92.36667', '15.51585,-92.22599', '16.18001,-91.63922', '17.68916,-91.71903', '16.12632,-92.02774', '16.88202,-92.71204', '16.61385,-92.08476', '16.36078,-92.36729', '15.43297,-92.89784', '16.15592,-91.40905', '16.26422,-90.62103',"15.38333,-92.18333"]
+}
+
+df = pd.DataFrame(data)
+
+
+# In[214]:
+
+
+import pandas as pd
+
+# Crear el DataFrame
+df = pd.DataFrame(data, columns=['Ciudad', 'Coordenadas'])
+
+# Convertir la columna 'Ciudad' a una serie de pandas y reemplazar los guiones
+df['Ciudad'] = df['Ciudad'].str.replace("-"," ")
+
+df.sort_values(by = "Ciudad")
+
+
+# In[215]:
+
+
+df["Ciudad"] = df["Ciudad"].str.replace(" ","")
+df
+
+
+# In[216]:
+
+
+from unidecode import unidecode
+
+desap['municipio_sin_acentos'] = desap['Municipio '].apply(lambda x: unidecode(x))
+desap
+
+
+# In[217]:
+
+
+desap_coords = pd.merge(desap,df,left_on = "municipio_sin_acentos", right_on = "Ciudad")
+
+
+# In[218]:
+
+
+desap_coords = desap_coords.drop(["Unnamed: 16","Ciudad"],axis=1)
+
+
+# In[219]:
+
+
+desap_coords
+
+
+# In[220]:
+
+
+import folium
+from folium.plugins import MarkerCluster
+
+# Coordenadas del centro de Chiapas
+map_chiapas = folium.Map(location=[16.7569, -93.1292], zoom_start=8)
+
+# Crear un grupo de marcadores
+marker_cluster = MarkerCluster().add_to(map_chiapas)
+
+# Agregar marcadores al mapa
+for index, row in df.iterrows():
+    ciudad, coordenadas = row['Ciudad'], row['Coordenadas']
+    lat, lon = map(float, coordenadas.split(','))
+    folium.Marker([lat, lon], popup=ciudad).add_to(marker_cluster)
+
+# Mostrar el mapa
+map_chiapas
+
+
+# In[221]:
+
+
+res = desap_coords.groupby(["municipio_sin_acentos","Coordenadas"])["municipio_sin_acentos"].count()
+res
+
+
+# In[222]:
+
+
+res = res.reset_index(name = "count")
+
+
+# In[223]:
+
+
+res = res.sort_values(by="count",ascending = False)
+
+
+# In[224]:
+
+
+res.columns
+
+
+# In[189]:
+
+
+import folium
+
+# Crear un mapa centrado en Chiapas
+map_chiapas = folium.Map(location=[16.5, -92.5], zoom_start=8)
+
+# Iterar sobre cada fila del DataFrame
+for index, row in res.iterrows():
+    # Extraer las coordenadas y el recuento
+    coords = list(map(float, row['Coordenadas'].split(',')))
+    count = row['Desapariciones']
+    
+    # Crear un marcador en el mapa con la etiqueta del recuento
+    folium.Marker(location=coords, popup=f'Count: {count}').add_to(map_chiapas)
+
+# Mostrar el mapa
+map_chiapas
+
+
+# In[190]:
+
+
+import folium
+
+# Crear un mapa centrado en Chiapas
+map_chiapas = folium.Map(location=[16.5, -92.5], zoom_start=8)
+
+# Iterar sobre cada fila del DataFrame
+for index, row in res.iterrows():
+    # Extraer las coordenadas, el nombre del municipio y el recuento
+    coords = list(map(float, row['Coordenadas'].split(',')))
+    municipio = row['municipio_sin_acentos']
+    count = row['count']
+    
+    # Crear un marcador en el mapa con la etiqueta del recuento
+    folium.Marker(location=coords, popup=f'{municipio}, Count: {count}').add_to(map_chiapas)
+
+# Mostrar el mapa
+map_chiapas
+
+
+# In[226]:
+
+
+import folium
+from folium import plugins
+
+# Crear un mapa centrado en Chiapas
+map_chiapas = folium.Map(location=[16.5, -92.5], zoom_start=8)
+
+# Obtener el máximo valor de count para normalizar el color
+max_count = res['count'].max()
+
+# Iterar sobre cada fila del DataFrame
+for index, row in res.iterrows():
+    # Extraer las coordenadas, el nombre del municipio y el recuento
+    coords = list(map(float, row['Coordenadas'].split(',')))
+    municipio = row['municipio_sin_acentos']
+    count = row['count']
+    
+    # Calcular el radio y el color del marcador
+    radius = 10 + 20 * (count / max_count)  # Ajustar el tamaño del marcador
+    color = 'red'  # Color base
+    if count > max_count * 0.75:
+        color = 'darkred'
+    elif count > max_count * 0.5:
+        color = 'orange'
+    elif count > max_count * 0.25:
+        color = 'yellow'
+    
+    folium.CircleMarker(location=coords, radius=radius, color=color, fill=True, fill_color=color,
+                        fill_opacity=0.7, popup=f'{municipio}, Count: {count}').add_to(map_chiapas)
+
+# Mostrar el mapa
+map_chiapas
+
+
+# In[204]:
+
+
+res1 = desap_coords.groupby(["municipio_sin_acentos","Coordenadas","Rango tiempo"])[['Rango tiempo']].count()
+res1.reset_index()
+
+
+# In[206]:
+
+
+res1 = desap_coords.groupby(["municipio_sin_acentos", "Coordenadas", "Rango tiempo"]).size().reset_index(name='count')
+
+
+# In[ ]:
+
+
+import folium
+
+# Crear un mapa centrado en Chiapas
+map_chiapas = folium.Map(location=[16.5, -92.5], zoom_start=8)
+
+# Iterar sobre cada fila del DataFrame
+for index, row in res.iterrows():
+    # Extraer las coordenadas, el nombre del municipio y el recuento
+    coords = list(map(float, row['Coordenadas'].split(',')))
+    municipio = row['municipio_sin_acentos']
+    count = row['count']
+    
+    # Crear un marcador en el mapa con la etiqueta del recuento
+    folium.Marker(location=coords, popup=f'{municipio}, Count: {count}').add_to(map_chiapas)
+
+# Mostrar el mapa
+map_chiapas
+
+
+# In[207]:
+
+
+import folium
+from folium import plugins
+
+# Crear un mapa centrado en Chiapas
+map_chiapas = folium.Map(location=[16.5, -92.5], zoom_start=8)
+
+# Obtener el máximo valor de count para normalizar el color
+max_count = res1['Rango tiempo'].max()
+
+# Iterar sobre cada fila del DataFrame
+for index, row in res1.iterrows():
+    # Extraer las coordenadas, el nombre del municipio, el rango de tiempo y el recuento
+    coords = list(map(float, row['Coordenadas'].split(',')))
+    municipio = row['municipio_sin_acentos']
+    rango_tiempo = row['Rango tiempo']
+    count = row['Rango tiempo']
+    
+    # Calcular el radio y el color del marcador
+    radius = 10 + 20 * (count / max_count)  # Ajustar el tamaño del marcador
+    color = 'red'  # Color base
+    if count > max_count * 0.75:
+        color = 'darkred'
+    elif count > max_count * 0.5:
+        color = 'orange'
+    elif count > max_count * 0.25:
+        color = 'yellow'
+    
+    # Crear un marcador en el mapa con el color y radio calculados
+    folium.CircleMarker(location=coords, radius=radius, color=color, fill=True, fill_color=color,
+                        fill_opacity=0.7, popup=f'{municipio}, Rango tiempo: {rango_tiempo}, Count: {count}').add_to(map_chiapas)
+
+# Mostrar el mapa
+map_chiapas
+
+
+# In[225]:
+
+
+# Hacer un primer zoom a nivel región, al hacer zoom que se vea a nivel municipio
+# estudiar indice de marginación, chance contrastar con GINI. Podemos tomarlo más contextual
+# chance evitar hacer correlaciones, puede comunicar mensaje incorrecto
